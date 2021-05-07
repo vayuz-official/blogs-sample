@@ -1,0 +1,194 @@
+<template name="referee_edit_blog">
+   <style type="text/css">
+    .datetimepicker-dummy .datetimepicker-dummy-wrapper{
+      border: 1px solid #dbdbdb !important;
+      background-color: transparent;
+          border-radius: 4px;
+    }
+    .ql-container.ql-snow, .ql-toolbar.ql-snow{
+          background-color: transparent !important;
+    }
+     .ql-snow .ql-picker-label::before {
+    display: inline-block;
+    line-height: 22px;
+    color: #fff !important;
+}
+.ql-snow .ql-stroke {
+    fill: none;
+    stroke: #fff !important;
+    }
+    .ql-snow .ql-transparent { 
+    opacity: 10;
+}
+  </style>
+  <div class="section-form">
+    
+  
+    <div class="columns categories-header home-content padding-0">
+      <h2 class="column is-12">Edit Blog</h2>
+    </div>
+    <div id="profile-about" class="view-wrap is-headless">
+      <div class="columns is-multiline no-margin">
+        <!-- Left side column -->
+        <div class="column is-paddingless">
+          <!-- Timeline Header -->
+          <div class="cover-bg">
+            <img class="cover-image" data-demo-src="/frontend-assets/images/vu-cover-image.png" src="{{data.banner_image}}" alt="" />
+
+            <div class="cover-overlay"></div>
+            <div class="cover-edit modal-trigger" data-modal="change-cover-modal">
+              <i class="mdi mdi-camera"></i>
+              <input
+                id="banner-image"
+                type="file"
+                style="display: none;"
+                accept="image/*"
+              />
+              <span>Edit cover image</span>
+            </div>
+            <!--/html/includes/pages/profile/timeline/dropdowns/timeline-mobile-dropdown.html-->
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-panel margin-bottom-20">
+      <div class="columns">
+        <div class="column is-6">
+          <div class="field">
+            <div class="field">
+              <label>Blog Title</label>
+              <div class="control has-validation">
+                <input
+                  type="text"
+                  id="blog-title"
+                  class="input select-input"
+                  placeholder="Blog Title"
+                  value="{{data.title}}"
+                />
+                <div id="invalid-title" class="display_hidden">
+                  Please enter title
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div id="when_to_publish_div" class="field">
+            <label>When to publish</label>
+            <div  class="control">
+              {{#unless data.status}}
+              <input
+                id="publish-date"
+                type="date"
+                class="input select-input"
+                placeholder="When to publish"
+                value="{{data.publish_date}}"
+              />
+              {{else}}
+              <input
+                id="publish-date"
+              type="text"
+                class="input select-input"
+                placeholder="When to publish"
+                value="{{data.publish_date}}"
+              />
+              {{/unless}}
+            </div>
+            <div id="invalid-date" class="display_hidden invalid_feedback">Please enter date</div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-12">
+          <div class="field">
+            <div class="field">
+              <label>Description</label>
+              <div id="editor"></div>
+              <div id="invalid-description" class="display_hidden invalid_feedback">
+                Please enter Description
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
+    <div class="has-text-right mt-3">
+      <a class="button is-rounded is-phantom primary-button mb-20 " id="back-to-blogs">Cancel</a>
+      <a
+        class="button is-rounded is-solid mb-20 dark-grey-button raised"
+        id="draft"
+      >
+        Save in draft
+      </a>
+      <a class="button is-rounded create mb-20 raised" id="preview-publish">
+        Preview to publish
+      </a>
+    </div>
+  </div>
+  <!-- <div
+    id="change-cover-modal"
+    class="modal change-cover-modal is-medium has-light-bg"
+  >
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-heading">
+          <h3>Update Cover</h3>
+          <div class="close-wrap">
+            <span class="close-modal">
+              <i data-feather="x"></i>
+            </span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="selection-placeholder">
+            <div class="columns">
+              <div class="column is-6">
+                <div
+                  class="selection-box modal-trigger"
+                  data-modal="upload-crop-cover-modal"
+                >
+                  <div class="box-content">
+                    <img
+                      src="assets\images\illustrations\profile\upload-cover.svg"
+                      alt=""
+                    />
+                    <div class="box-text">
+                      <span>Upload</span>
+                      <span>From your computer</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div
+                  class="selection-box modal-trigger"
+                  data-modal="user-photos-modal"
+                >
+                  <div class="box-content">
+                    <img
+                      src="assets\images\illustrations\profile\change-cover.svg"
+                      alt=""
+                    />
+                    <div class="box-text">
+                      <span>Choose</span>
+                      <span>From your photos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- <script type="text/javascript"></script> -->
+
+  {{> upload_cover_pic}}
+
+  {{> sAlert}}
+</template>

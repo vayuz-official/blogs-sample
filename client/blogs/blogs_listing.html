@@ -1,0 +1,179 @@
+<template name="blog_listing_front">
+    <style type="text/css">
+        @media only screen and (min-width: 881px) and (max-width: 1024px){
+            .mobile-s-header{
+            display: none !important
+            }
+        }
+
+        @media only screen and (max-width: 767px){
+            .questions-nav .inner .questions-nav-menu{
+                justify-content: flex-start;
+            }
+        }  
+    </style> 
+    <div class="questions-nav">
+        <div class="inner is-scrollable">
+            <div class="container mobile-s-header">
+                <div class="questions-nav-menu option-tabs is-friends">
+                    {{#each fetch_logged_in_user}}
+                    {{#unless equals user_type 'ATHLETE'}}
+                    <a
+                        id="header_all"
+                        data-tab="all-blogs"
+                        class="menu-item option-tab {{#if check_if_active_blog_type 'all'}} is-active{{/if}}"
+                        >
+                        <span class="all_blogs_count">All</span>
+                    </a>
+                    <a
+                        id="header_pub"
+                        class="menu-item option-tab  {{#if check_if_active_blog_type 'published'}} is-active{{/if}}"
+                        data-tab="published-blogs"
+                        >
+                    <span class="all_published_count">By me</span>
+                    </a>
+                    <a
+                        id="header_up"
+                        class="menu-item option-tab {{#if check_if_active_blog_type 'Upcoming'}} is-active{{/if}}"
+                        data-tab="upcoming-blogs"
+                        >
+                    <span class="all_upcoming_count">Upcoming</span>
+                    </a>
+                    <a
+                        id="header_draft"
+                        class="menu-item option-tab  {{#if check_if_active_blog_type 'draft'}} is-active{{/if}}"
+                        data-tab="draft-blogs"
+                        >
+                    <span class="all_draft_count">Draft</span>
+                    </a>
+                    <a
+                        id="header_create"
+                        href=""
+                        class="menu-item create border-radius-40"
+                        >
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        <span>Create Blog</span>
+                    </a>
+                    {{/unless}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section is-news videos-wrapper p-0">
+        <div class="columns categories-header home-content pt-0 mb-0 ">
+            <h2 class="column is-2">
+                Blogs
+            </h2>
+            <div class="column collections-header is-home-v2 is-hidden-mobile  is-7-desktop" >
+                {{#each fetch_logged_in_user}}
+                {{#unless equals user_type 'ATHLETE'}}
+                <div class="option-tabs is-friends">
+                    <a
+                        id="get_header_all"
+                        class="option-tab {{#if check_if_active_blog_type 'all'}} is-active{{/if}}"
+                        data-tab="all-blogs"
+                        >
+                    <span class="all_blogs_count">All</span>
+                    </a>
+                    <a
+                        id="get_header_publish"
+                        class="option-tab {{#if check_if_active_blog_type 'published'}} is-active{{/if}}"
+                        data-tab="published-blogs"
+                        >
+                    <span class="all_published_count">By me</span>
+                    </a>
+                    <a id="get_header_up" class="option-tab {{#if check_if_active_blog_type 'coming-soon'}} is-active{{/if}}" data-tab="upcoming-blogs">
+                    <span class="all_upcoming_count">Upcoming</span>
+                    </a>
+                    <a id="get_draft_blogs" class="option-tab {{#if check_if_active_blog_type 'draft'}} is-active{{/if}}" data-tab="draft-blogs">
+                    <span class="all_draft_count">Draft</span>
+                    </a>
+                </div>
+                <a id="create_blog" class="new-create-btn" href="">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Create Blog
+                </a>
+                {{/unless}}
+                {{/each}}
+            </div>
+            <div class="control column is-3 is-3-tablet">
+                <div class="field is-hidden-mobile">
+                    <div class="control has-validation has-error">
+                        <input
+                            type="text"
+                            class="input"
+                            autocomplete="false"
+                            name="query"
+                            title="Search"
+                            id="search_query"
+                            value="{{searched_query}}"
+                            placeholder="Search"
+                            />
+                        <div class="error-icon">
+                            {{#if active_cross_icon}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                <div class="is-hidden-tablet has-text-right">
+                    <div id="subsearch" class="nav-item is-search is-hidden">
+                        <div class="control">
+                            <input
+                                type="text"
+                                class="input textFilter-input"
+                                placeholder="Search"
+                                />
+                        </div>
+                    </div>   
+                    <a id="show-subsearch" class="nav-item is-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </a>
+                    <a id="hide-subsearch" class="nav-item is-icon is-hidden">
+                       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </a>
+                </div>
+            </div>
+        </div>                           
+        <div class="column collections-header is-home-v2 pl-0-ph  is-hidden-desktop mobile-s-header pt-0">
+          {{#each fetch_logged_in_user}}
+            {{#unless equals user_type 'ATHLETE'}}
+              <div class="option-tabs is-friends"> 
+                <a id="get_header_all" class="menu-item option-tab todays_tab {{#if check_if_active_blog_type 'today'}} is-active{{/if}}">
+                  <span class="all_blogs_count">All</span>
+                </a>
+                <a id="get_header_publish" class="menu-item option-tab upcoming_event {{#if check_if_active_blog_type 'upcoming'}} is-active{{/if}}">
+                  <span class="all_published_count">By me</span>
+                </a>
+                <a id="get_header_up" class="menu-item option-tab past_event {{#if check_if_active_blog_type 'past'}} is-active{{/if}}">
+                  <span class="all_upcoming_count">Upcoming</span>
+                </a>
+                <a id="get_draft_blogs" class="menu-item option-tab created_by_me {{#if check_if_active_blog_type 'mine'}} is-active{{/if}}"  
+                >
+                  <span class="all_draft_count">Draft</span>
+                </a>
+                <a id="create_blog" class="new-create-btn" href="">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>  
+                Create Blog
+              </a>
+              </div>
+          {{/unless}}
+        {{/each}}
+      </div>
+        {{> Template.dynamic template=blog_listing_card}}
+    </div>
+</template>  
+<template name="delete_blogs_modal"></template>

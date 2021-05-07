@@ -1,0 +1,126 @@
+<template name="referee_create_blog">
+  <style type="text/css">
+    .datetimepicker-dummy .datetimepicker-dummy-wrapper{
+      border: 1px solid #dbdbdb !important;
+      background-color: transparent;
+          border-radius: 4px;
+    }
+    .ql-container.ql-snow, .ql-toolbar.ql-snow{
+          background-color: transparent !important;
+    }
+     .ql-snow .ql-picker-label::before {
+    display: inline-block;
+    line-height: 22px;
+    color: #fff !important;
+}
+.ql-snow .ql-stroke {
+    fill: none;
+    stroke: #fff !important;
+    }
+    .ql-snow .ql-transparent {
+    opacity: 10;
+}
+  </style>
+  <div class="section-form">
+    
+  
+  <div class="columns categories-header home-content padding-0">
+    <h2 class="column is-12">Create Blog</h2>
+  </div>
+  <div id="profile-about" class="view-wrap is-headless">
+    <div class="columns is-multiline no-margin">
+      <!-- Left side column -->
+      <div class="column is-paddingless">
+        <!-- Timeline Header -->
+        <div class="cover-bg">
+          <img
+            class="cover-image"
+            src="/frontend-assets/images/vu-cover-image.png"
+            alt=""
+          />
+
+          <div class="cover-overlay"></div>
+          <div class="cover-edit modal-trigger" data-modal="change-cover-modal">
+            <i class="mdi mdi-camera"></i>
+            <input
+              id="banner-image"
+              type="file"
+              style="display: none;"
+              accept="image/*"
+            />
+            <span>Edit cover image</span>
+          </div>
+          <!--/html/includes/pages/profile/timeline/dropdowns/timeline-mobile-dropdown.html-->
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-panel margin-bottom-20">
+    <div class="columns">
+      <div class="column is-6">
+        <div class="field">
+          <div class="field">
+            <label>Blog Title</label>
+            <div class="control has-validation">
+              <input
+                type="text"
+                id="blog-title"
+                class="input select-input"
+                placeholder="Blog Title"
+              />
+              <div id="invalid-title" class="display_hidden invalid_feedback">
+                Please enter title
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-6">
+          <div class="field">
+              <div class="inner-field">
+                  <label>When to Publish</label>
+                  <div class="control">
+                      <input type="text" id="publish-date" class="input" placeholder="Ex. 16/06/2020">
+                  </div>
+              </div>
+              <div id="invalid-date" class="display_hidden invalid_feedback">Please enter date</div>
+            
+              <!--  error code add here -->
+          </div>
+
+      
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-12">
+        <div class="field">
+          <div class="field">
+            <label>Description</label>
+            <div id="editor"></div>
+            <div id="invalid-description" class="display_hidden invalid_feedback">
+              Please enter Description
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="has-text-right">
+    <a class="button is-rounded is-phantom primary-button mb-20" href="/blogs/all">Cancel</a>
+    <a
+      class="button is-rounded is-solid mb-20 dark-grey-button raised"
+      id="draft"
+    >
+      Save
+    </a>
+    <a class="button is-rounded create mb-20 raised" id="preview-publish">
+      Preview
+    </a>
+  </div>
+  </div>
+   {{> upload_cover_pic}}
+
+  {{> sAlert}}
+</template>
